@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HealthyLife</string>
+    <string name="facebook_app_id">621211062123982</string> <string name="fb_login_protocol_scheme">fb621211062123982</string>
+</resources>

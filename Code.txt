@@ -1,0 +1,11 @@
+keytool -list -alias androiddebugkey -keystore C:/Users/Admin/.android/debug.keystore
+SHA256 : 7B:85:88:3F:04:C8:BA:09:77:0B:59:E8:8A:0D:6C:DD:D9:A2:C1:25:C0:4F:44:A1:82:8D:6E:2F:D2:9E:73:6A
+SHA1 : 28:0F:F3:E8:DD:45:92:DA:F1:A1:58:B2:13:E8:2E:76:84:7B:4A:C6
+
+ClientID:1034032037336-ohitdricnfkpeirrgemtkt756at0ga82.apps.googleusercontent.com
+Client secret: sC4AWeC81-fqBfX9dCgWdpaN
+
+Facebook appID:621211062123982
+SecretCode: 86fc2e0338a6b869c4e4e9b7a1c54daf
+HashCode: 5pDS+Qr+h2fLaXJ4GLaetuCbMis=
+keytool -exportcert -alias androiddebugkey -keystore "C:\Users\Admin\.android\debug.keystore" | "D:\Johan\Installer\Installed\SDK\openssl-0.9.8k_X64\bin\openssl" sha1 -binary | "D:\Johan\Installer\Installed\SDK\openssl-0.9.8k_X64\bin\openssl" base64
