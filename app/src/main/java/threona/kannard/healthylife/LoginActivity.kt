@@ -33,8 +33,8 @@ class LoginActivity : AppCompatActivity(){
         setContentView(R.layout.activity_login)
 
         if (isLoggedIn() || isSignedIn(this)) {
-//            val intent : Intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
+         //   val intent : Intent = Intent(this, MainActivity::class.java)
+         //   startActivity(intent)
 
         } else {
             // Show the Home Activity
