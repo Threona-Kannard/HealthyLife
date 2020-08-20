@@ -15,7 +15,6 @@ class SignUpActivity : AppCompatActivity() {
             val intent: Intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        val checkTermOfService = findViewById<CheckBox>(R.id.term_of_services)
-        checkTermOfService.text = "I accept the Terms of Services"
+
     }
 }

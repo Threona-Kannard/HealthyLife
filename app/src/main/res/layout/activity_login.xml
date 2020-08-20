@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="1dp"
         android:src="@drawable/healthy_life" />
 
     <LinearLayout
@@ -88,7 +89,7 @@
         android:background="@drawable/circle_bg"
         android:layout_toLeftOf="@id/facebook_login_btn"
         android:layout_below="@id/padding_view"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         android:padding="13dp" />
     <Button
         android:layout_width="45dp"
@@ -98,7 +99,7 @@
         android:layout_below="@id/padding_view"
         android:drawableStart="@drawable/sign_up_icon_small"
         android:layout_toRightOf="@id/facebook_login_btn"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:padding="8dp"
         />
 
