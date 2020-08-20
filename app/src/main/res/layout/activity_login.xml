@@ -6,10 +6,19 @@
     android:background="#fafafa"
     android:gravity="center"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logoImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/healthy_life" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/loginText"
+        android:layout_below = "@id/logoImg"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -39,19 +48,27 @@
             android:layout_height="wrap_content"
             android:text="Sign In"
             android:textSize="20dp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="125dp"
+            android:text="Remember me"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/padding_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_below="@id/loginText">
         <View
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="#000000"/>
+            android:layout_height="2dp"
+            android:outlineSpotShadowColor="@color/browser_actions_bg_grey"
+            android:outlineAmbientShadowColor="@color/browser_actions_bg_grey"
+            android:background="#002200"/>
     </LinearLayout>
     <Button
         android:id="@+id/facebook_login_btn"

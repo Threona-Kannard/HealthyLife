@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.facebook.*
@@ -40,7 +41,12 @@ class LoginActivity : AppCompatActivity(){
         }
 
         //region Personal Login
-
+            //Sign Up
+            var signUpBtn = findViewById<Button>(R.id.app_sign_up)
+            signUpBtn.setOnClickListener {
+                val intent : Intent = Intent(this, SignUpActivity::class.java)
+                startActivity(intent)
+            }
         //endregion
 
         //region Facebook Login Config
