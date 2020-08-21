@@ -35,6 +35,9 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
+        val intent : Intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         if (isLoggedIn() || isSignedIn(this)) {
          //   val intent : Intent = Intent(this, MainActivity::class.java)
          //   startActivity(intent)
