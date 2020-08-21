@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
 
         //region Google Login Config
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("YOUR_WEB_APPLICATION_CLIENT_ID")
+            .requestIdToken((R.string.google_API_key).toString())
             .requestEmail()
             .build()
 
@@ -206,11 +206,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        var account : GoogleSignInAccount? = null
         try {
-            val account = completedTask.getResult(
-                ApiException::class.java
-            )
-            // Signed in successfully
+            account = completedTask.getResult(
+                ApiException::class.java)
+                // Signed in successfully
             val googleId = account?.id ?: ""
             Log.i("Google ID", googleId)
 
@@ -228,12 +228,25 @@ class LoginActivity : AppCompatActivity() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
+            val userName = "$googleFirstName $googleLastName"
+            val user = hashMapOf("name" to userName, "email" to googleEmail)
         } catch (e: ApiException) {
             // Sign in was unsuccessful
             Log.e(
                 "failed code=", e.statusCode.toString()
             )
         }
+
+//        // Add a new document with a generated ID
+//        db?.collection("user")?.document("gg_$googleEmail")
+//            ?.set(user)
+//            ?.addOnSuccessListener {
+//                Log.d(
+//                    "my Tag",
+//                    "DocumentSnapshot successfully written!"
+//                )
+//            }
+//            ?.addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
     }
 
     private fun signOut() {

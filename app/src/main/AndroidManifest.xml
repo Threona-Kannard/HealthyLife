@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserDetailPushDatabase"></activity>
+        <activity android:name=".DetailsData"></activity>
+        <activity android:name=".UserDetailPushDatabase" />
         <activity
             android:name=".WaterActivity"
             android:label="@string/title_activity_water"
