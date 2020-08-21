@@ -21,7 +21,6 @@ class WaterActivity : AppCompatActivity() {
         val btn_water_icon = findViewById<Button>(R.id.add_water)
         btn_water_icon?.setOnClickListener()
         {
-            if ()
             if (total<2){
             val total_water = findViewById<TextView>(R.id.Water_count)
             total = total+0.25f

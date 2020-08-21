@@ -16,13 +16,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : AppCompatActivity(){
+class LoginActivity : AppCompatActivity() {
     //Firebase Instance
     var storage = FirebaseStorage.getInstance()
+
+    // Access a Cloud Firestore instance from your Activity
+    private var db: FirebaseFirestore? = FirebaseFirestore.getInstance()
 
     //Facebook Login Callback variable
     lateinit var callbackManager: CallbackManager
@@ -35,9 +39,8 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         if (isLoggedIn() || isSignedIn(this)) {
-            val intent : Intent = Intent(this, MainActivity::class.java)
+            val intent: Intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
         } else {
@@ -45,12 +48,12 @@ class LoginActivity : AppCompatActivity(){
         }
 
         //region Personal Login
-            //Sign Up
-            var signUpBtn = findViewById<Button>(R.id.app_sign_up)
-            signUpBtn.setOnClickListener {
-                val intent : Intent = Intent(this, SignUpActivity::class.java)
-                startActivity(intent)
-            }
+        //Sign Up
+        var signUpBtn = findViewById<Button>(R.id.app_sign_up)
+        signUpBtn.setOnClickListener {
+            val intent: Intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
         //endregion
 
         //region Facebook Login Config
@@ -83,7 +86,7 @@ class LoginActivity : AppCompatActivity(){
 
         //region Google Login Config
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("YOUR_WEB_APPLICATION_CLIENT_ID")
+            .requestIdToken((R.string.google_API_key).toString())
             .requestEmail()
             .build()
 
@@ -102,8 +105,9 @@ class LoginActivity : AppCompatActivity(){
             val task =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
+
         }
-        val intent : Intent = Intent(this, MainActivity::class.java)
+        val intent: Intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
@@ -123,6 +127,9 @@ class LoginActivity : AppCompatActivity(){
     }
 
     fun getUserProfile(token: AccessToken?, userId: String?) {
+        var facebookEmail: String = ""
+        var facebookName: String = ""
+        var facebookId: String = ""
 
         val parameters = Bundle()
         parameters.putString(
@@ -146,72 +153,44 @@ class LoginActivity : AppCompatActivity(){
 
                 // Facebook Id
                 if (jsonObject.has("id")) {
-                    val facebookId = jsonObject.getString("id")
+                    facebookId = jsonObject.getString("id")
                     Log.i("Facebook Id: ", facebookId.toString())
                 } else {
                     Log.i("Facebook Id: ", "Not exists")
                 }
-
-
-                // Facebook First Name
-                if (jsonObject.has("first_name")) {
-                    val facebookFirstName = jsonObject.getString("first_name")
-                    Log.i("Facebook First Name: ", facebookFirstName)
-                } else {
-                    Log.i("Facebook First Name: ", "Not exists")
-                }
-
-
-                // Facebook Middle Name
-                if (jsonObject.has("middle_name")) {
-                    val facebookMiddleName = jsonObject.getString("middle_name")
-                    Log.i("Facebook Middle Name: ", facebookMiddleName)
-                } else {
-                    Log.i("Facebook Middle Name: ", "Not exists")
-                }
-
-
-                // Facebook Last Name
-                if (jsonObject.has("last_name")) {
-                    val facebookLastName = jsonObject.getString("last_name")
-                    Log.i("Facebook Last Name: ", facebookLastName)
-                } else {
-                    Log.i("Facebook Last Name: ", "Not exists")
-                }
-
-
                 // Facebook Name
                 if (jsonObject.has("name")) {
-                    val facebookName = jsonObject.getString("name")
+                    facebookName = jsonObject.getString("name")
                     Log.i("Facebook Name: ", facebookName)
                 } else {
                     Log.i("Facebook Name: ", "Not exists")
                 }
 
-
-                // Facebook Profile Pic URL
-                if (jsonObject.has("picture")) {
-                    val facebookPictureObject = jsonObject.getJSONObject("picture")
-                    if (facebookPictureObject.has("data")) {
-                        val facebookDataObject = facebookPictureObject.getJSONObject("data")
-                        if (facebookDataObject.has("url")) {
-                            val facebookProfilePicURL = facebookDataObject.getString("url")
-                            Log.i("Facebook Profile Pic URL: ", facebookProfilePicURL)
-                        }
-                    }
-                } else {
-                    Log.i("Facebook Profile Pic URL: ", "Not exists")
-                }
-
                 // Facebook Email
                 if (jsonObject.has("email")) {
-                    val facebookEmail = jsonObject.getString("email")
+                    facebookEmail = jsonObject.getString("email")
                     Log.i("Facebook Email: ", facebookEmail)
                 } else {
                     Log.i("Facebook Email: ", "Not exists")
                 }
+
+                val user = hashMapOf("name" to facebookName, "email" to facebookEmail)
+
+                // Add a new document with a generated ID
+                db?.collection("user")?.document("fb_$facebookId")
+                    ?.set(user)
+                    ?.addOnSuccessListener {
+                        Log.d(
+                            "my Tag",
+                            "DocumentSnapshot successfully written!"
+                        )
+                    }
+                    ?.addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
+
             }).executeAsync()
+
     }
+
     //endregion
 
     //region Google Login helper
@@ -221,17 +200,19 @@ class LoginActivity : AppCompatActivity(){
             signInIntent, RC_SIGN_IN
         )
     }
-    private fun isSignedIn(context : Context): Boolean {
+
+    private fun isSignedIn(context: Context): Boolean {
         return GoogleSignIn.getLastSignedInAccount(context) != null
     }
+
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        var account : GoogleSignInAccount? = null
         try {
-            val account = completedTask.getResult(
-                ApiException::class.java
-            )
-            // Signed in successfully
+            account = completedTask.getResult(
+                ApiException::class.java)
+                // Signed in successfully
             val googleId = account?.id ?: ""
-            Log.i("Google ID",googleId)
+            Log.i("Google ID", googleId)
 
             val googleFirstName = account?.givenName ?: ""
             Log.i("Google First Name", googleFirstName)
@@ -247,25 +228,40 @@ class LoginActivity : AppCompatActivity(){
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-
+            val userName = "$googleFirstName $googleLastName"
+            val user = hashMapOf("name" to userName, "email" to googleEmail)
         } catch (e: ApiException) {
             // Sign in was unsuccessful
             Log.e(
                 "failed code=", e.statusCode.toString()
             )
         }
+
+//        // Add a new document with a generated ID
+//        db?.collection("user")?.document("gg_$googleEmail")
+//            ?.set(user)
+//            ?.addOnSuccessListener {
+//                Log.d(
+//                    "my Tag",
+//                    "DocumentSnapshot successfully written!"
+//                )
+//            }
+//            ?.addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
     }
+
     private fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener(this) {
                 // Update your UI here
             }
     }
+
     private fun revokeAccess() {
         mGoogleSignInClient.revokeAccess()
             .addOnCompleteListener(this) {
                 // Update your UI here
             }
     }
+
     //endregion
 }
