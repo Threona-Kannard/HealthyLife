@@ -36,21 +36,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:id="@+id/target_water"
         android:text="2.00 L"
         android:textSize="20dp"
-        android:textAlignment="center">
-    </TextView>
-
-
+        android:textAlignment="center"/>
+    <Button
+        android:id="@+id/add_water"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/water_icon"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/each_iconvalue"
-        android:text="250ML"
+        android:text="250ML/ per glass"
         android:textSize="20dp"
         android:textAlignment="center"
     />
-
+    <Button
+        android:layout_marginTop="100dp"
+        android:id="@+id/water_setting_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/setting_icon"/>
 </LinearLayout>
