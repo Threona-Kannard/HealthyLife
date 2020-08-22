@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
 
         //region Google Login Config
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken((R.string.google_API_key).toString())
+            .requestIdToken(getString(R.string.google_API_key))
             .requestEmail()
             .build()
 
@@ -174,7 +174,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.i("Facebook Email: ", "Not exists")
                 }
 
-                val user = hashMapOf("name" to facebookName, "email" to facebookEmail)
+                val user = hashMapOf("id" to facebookId, "name" to facebookName, "email" to facebookEmail, "type" to "facebook")
 
                 // Add a new document with a generated ID
                 db?.collection("user")?.document("fb_$facebookId")
@@ -206,21 +206,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        var account : GoogleSignInAccount? = null
+        var googleId : String? = ""
+        var googleFirstName : String? = ""
+        var googleLastName : String? = ""
+        var googleEmail : String? = ""
         try {
-            account = completedTask.getResult(
+            val account = completedTask.getResult(
                 ApiException::class.java)
                 // Signed in successfully
-            val googleId = account?.id ?: ""
+            googleId = account?.id ?: ""
             Log.i("Google ID", googleId)
 
-            val googleFirstName = account?.givenName ?: ""
+            googleFirstName = account?.givenName ?: ""
             Log.i("Google First Name", googleFirstName)
 
-            val googleLastName = account?.familyName ?: ""
+            googleLastName = account?.familyName ?: ""
             Log.i("Google Last Name", googleLastName)
 
-            val googleEmail = account?.email ?: ""
+            googleEmail = account?.email ?: ""
             Log.i("Google Email", googleEmail)
 
             val googleProfilePicURL = account?.photoUrl.toString()
@@ -228,8 +231,7 @@ class LoginActivity : AppCompatActivity() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
-            val userName = "$googleFirstName $googleLastName"
-            val user = hashMapOf("name" to userName, "email" to googleEmail)
+
         } catch (e: ApiException) {
             // Sign in was unsuccessful
             Log.e(
@@ -237,16 +239,19 @@ class LoginActivity : AppCompatActivity() {
             )
         }
 
-//        // Add a new document with a generated ID
-//        db?.collection("user")?.document("gg_$googleEmail")
-//            ?.set(user)
-//            ?.addOnSuccessListener {
-//                Log.d(
-//                    "my Tag",
-//                    "DocumentSnapshot successfully written!"
-//                )
-//            }
-//            ?.addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
+        val userName = "$googleFirstName $googleLastName"
+        val user = hashMapOf("id" to googleId, "name" to userName, "email" to googleEmail, "type" to "google")
+        // Add a new document with a generated ID
+        db?.collection("user")?.document("google_$googleId")
+            ?.set(user)
+            ?.addOnSuccessListener {
+                Log.d(
+                    "my Tag",
+                    "DocumentSnapshot successfully written!"
+                )
+            }
+            ?.addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
+
     }
 
     private fun signOut() {
