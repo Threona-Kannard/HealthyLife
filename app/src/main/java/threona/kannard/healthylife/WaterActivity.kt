@@ -24,7 +24,7 @@ class WaterActivity : AppCompatActivity() {
 
         val btn_water_icon = findViewById<Button>(R.id.add_water)
 
-        var file = File(getFilesDir().getAbsolutePath(), Waterfilename)
+        var file = File(filesDir.absolutePath, Waterfilename)
 
         if(Waterfilename.trim()!=""){
             if (!file.exists())
@@ -75,7 +75,6 @@ class WaterActivity : AppCompatActivity() {
             Waterdata = SaveString(total,currentDate.toString())
 
             //write data
-
 
             try {
                 val fileOutputStream: FileOutputStream
