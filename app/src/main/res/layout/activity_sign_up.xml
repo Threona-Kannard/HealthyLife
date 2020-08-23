@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_logo"
+        android:src="@drawable/healthy_life_banner"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="20dp"
+        android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:id="@+id/info_field">
         <com.google.android.material.textfield.TextInputLayout
@@ -18,10 +24,9 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             app:errorEnabled="true"
-            app:counterMaxLength="16"
-            app:counterEnabled="true"
             app:hintAnimationEnabled="true"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:id="@+id/textInput_user_name">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +41,8 @@
             app:errorEnabled="true"
             app:hintAnimationEnabled="true"
             app:counterMaxLength="16"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:id="@+id/textInput_password">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +57,8 @@
             app:passwordToggleEnabled="true"
             app:hintAnimationEnabled="true"
             app:counterMaxLength="16"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:id="@+id/textInput_confirm_password">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,25 +71,15 @@
             android:hint="Email"
             app:hintAnimationEnabled="true"
             app:errorEnabled="true"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:id="@+id/textInput_email">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone number"
-            app:errorEnabled="true"
-            app:hintAnimationEnabled="true"
-            android:layout_marginBottom="15dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,10 +96,10 @@
         </LinearLayout>
 
     </LinearLayout>
-    <Button android:id="@+id/back_btn"
+    <Button android:id="@+id/Sign_up_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back button"
+            android:text="Sign Up"
             android:textSize="20dp"
             android:layout_below="@id/info_field"/>
 </RelativeLayout>

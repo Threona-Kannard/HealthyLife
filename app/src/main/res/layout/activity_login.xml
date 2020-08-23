@@ -48,13 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:textSize="20dp"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="125dp"
-            android:text="Remember me"
-            android:layout_marginTop="10dp"/>
+            android:textSize="20dp"
+            android:id="@+id/sign_in_btn"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/padding_view"

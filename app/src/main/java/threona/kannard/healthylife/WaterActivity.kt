@@ -24,7 +24,7 @@ class WaterActivity : AppCompatActivity() {
 
         val btn_water_icon = findViewById<Button>(R.id.add_water)
 
-        val file = File(filesDir.absolutePath, Waterfilename)
+        var file = File(getFilesDir().getAbsolutePath(), Waterfilename)
 
         if(Waterfilename.trim()!=""){
             if (!file.exists())
@@ -51,8 +51,8 @@ class WaterActivity : AppCompatActivity() {
         if(res.size == 2) {
 
             //get current date
-            val eventDate: LocalDate = LocalDate.parse(res[1])
-            val dateMargin = currentDate.isAfter(eventDate)
+            var eventDate: LocalDate = LocalDate.parse(res[1])
+            var dateMargin = currentDate.isAfter(eventDate)
 
             if (dateMargin) {
                 total = 0f
@@ -65,7 +65,7 @@ class WaterActivity : AppCompatActivity() {
 
         btn_water_icon?.setOnClickListener()
         {
-            //calculate for edittext
+            //calculate for edit text
             if (total<2){
                 val total_water = findViewById<TextView>(R.id.Water_count)
                 total += 0.25f

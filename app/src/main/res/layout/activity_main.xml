@@ -9,6 +9,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/food_activity"
+        android:layout_above="@id/water_activity_button"
+        android:layout_marginBottom="15dp"
+        android:text="Food Activity"
+        android:textSize="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:id="@+id/water_activity_button"
         android:text="Water Activity"
