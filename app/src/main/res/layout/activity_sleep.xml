@@ -16,4 +16,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/main_activity_button"
         android:text="Main Activity"
+        android:textSize="20sp"/>
 </LinearLayout>
