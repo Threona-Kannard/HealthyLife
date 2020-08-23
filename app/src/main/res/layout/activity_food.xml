@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarSetup">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back Button"
-        android:id="@+id/back_btn"/>
+    tools:context=".FoodActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

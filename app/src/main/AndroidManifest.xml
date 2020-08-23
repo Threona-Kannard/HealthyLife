@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CalendarSetup"></activity>
-        <activity android:name=".DetailsData" />
-        <activity android:name=".UserDetailPushDatabase" />
+        <activity android:name=".FoodActivity"></activity>
         <activity
             android:name=".WaterActivity"
             android:label="@string/title_activity_water"
