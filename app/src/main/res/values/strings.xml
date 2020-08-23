@@ -12,4 +12,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="channel_name">healthylife_channel</string>
+    <string name="channel_description">healthy</string>
+    <string name="CHANNEL_ID">23082020</string>
 </resources>
