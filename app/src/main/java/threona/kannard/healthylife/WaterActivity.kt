@@ -27,7 +27,7 @@ class WaterActivity : AppCompatActivity() {
         var file = File(getFilesDir().getAbsolutePath(), Waterfilename)
 
         if(Waterfilename.trim()!=""){
-            if (!file.exists())
+            if (file.exists() == false)
             {
                 openFileOutput(Waterfilename, Context.MODE_PRIVATE)
             }
@@ -50,7 +50,7 @@ class WaterActivity : AppCompatActivity() {
 
         if(res.size == 2) {
 
-            //get current date
+            //getcurrent date
             var eventDate: LocalDate = LocalDate.parse(res[1])
             var dateMargin = currentDate.isAfter(eventDate)
 
@@ -59,18 +59,17 @@ class WaterActivity : AppCompatActivity() {
             }
             else {
                 total = res[0].toFloat()
-                findViewById<TextView>(R.id.Water_count).text = total.toString()
+                findViewById<TextView>(R.id.Water_count).setText(total.toString())
             }
         }
 
         btn_water_icon?.setOnClickListener()
         {
-            //calculate for edit text
+            //calculate for edittext
             if (total<2){
                 val total_water = findViewById<TextView>(R.id.Water_count)
-                total += 0.25f
-                total_water.text = total.toString()
-            }
+                total = total+0.25f
+                total_water.setText(total.toString())}
 
             Waterdata = SaveString(total,currentDate.toString())
 
@@ -95,6 +94,6 @@ class WaterActivity : AppCompatActivity() {
     }
 
     private fun SaveString(total: Float, dateInString: String): String {
-        return "$total;$dateInString"
+        return total.toString() + ";" + dateInString
     }
 }
