@@ -1,5 +1,13 @@
 package threona.kannard.healthylife
 
-data class Food(val name: String, val imgId: String) {
+class Food(name: String, imageUrl: String) {
+    private val mName : String = name
+    private val mImageUrl : String = imageUrl
 
+    fun getName(): String {
+        return mName
+    }
+    fun getImageUrl() : String{
+        return mImageUrl
+    }
 }
