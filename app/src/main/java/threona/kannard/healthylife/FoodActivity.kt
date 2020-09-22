@@ -1,8 +1,12 @@
 package threona.kannard.healthylife
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.*
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +27,10 @@ class FoodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://healthylife-dae75.firebaseio.com/Food")
 
@@ -60,5 +68,19 @@ class FoodActivity : AppCompatActivity() {
                 }
         })
         mRecyclerView.adapter = mAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater : MenuInflater = menuInflater
+        inflater.inflate(R.menu.toolbar_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) {
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

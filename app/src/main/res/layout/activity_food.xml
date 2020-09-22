@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoodActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,5 +16,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/test_view"/>
+        android:id="@+id/test_view"
+        android:layout_below="@+id/toolbar"/>
 </RelativeLayout>
