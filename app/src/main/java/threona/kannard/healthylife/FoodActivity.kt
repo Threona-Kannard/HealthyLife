@@ -76,8 +76,8 @@ class FoodActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) {
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return true
     }
 
     override fun onBackPressed() {
