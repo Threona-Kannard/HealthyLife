@@ -94,7 +94,6 @@ class WaterActivity : AppCompatActivity() {
 
             //write data
 
-
             try {
                 val fileOutputStream: FileOutputStream
                 fileOutputStream = openFileOutput(Waterfilename, Context.MODE_PRIVATE)
