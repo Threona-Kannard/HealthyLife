@@ -10,6 +10,7 @@ class SleepCounter : AppCompatActivity() {
     private val sleepFileName = "sleep_history.txt"
     private var beginTime:Calendar? = null
     private var endTime:Calendar? = null
+
     fun onChangeState(){
 
     }
@@ -32,6 +33,7 @@ class SleepCounter : AppCompatActivity() {
         val differHour
                 = endTime!!.get(Calendar.HOUR_OF_DAY) - beginTime!!.get(Calendar.HOUR_OF_DAY)
         val differMin : Int
+
         differMin = if(differHour == 0) {
             endTime!!.get(Calendar.MINUTE) - beginTime!!.get(Calendar.MINUTE)
         } else if(differHour == -23 || differHour == 1){
@@ -111,5 +113,6 @@ class SleepCounter : AppCompatActivity() {
         }
 
     }// DD/MM, difH:difM
+
 
 }
