@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_food.*
 import kotlinx.coroutines.delay
+import threona.kannard.healthylife.FoodAdapter.onItemClickListener
 
 class FoodActivity : AppCompatActivity() {
     private lateinit var mDatabaseReference : DatabaseReference
@@ -68,6 +69,15 @@ class FoodActivity : AppCompatActivity() {
                 }
         })
         mRecyclerView.adapter = mAdapter
+        mAdapter.setOnItemClickListener(object : onItemClickListener {
+            override fun onItemClick(position: Int) {
+                val food = mFoods[position]
+                Toast.makeText(this@FoodActivity, food.getName(), Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@FoodActivity, FoodDetail::class.java)
+                intent.putExtra("position", position)
+                intent.putExtra("url", mFoods[position].getImageUrl())
+                startActivity(intent)
+            }
+        })
     }
-
 }

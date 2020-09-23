@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/water_activity_button"
         android:id="@+id/sleep_activity_button"
-        android:text="Sleep Activity"
+        android:text="Phone Useage Time"
         android:layout_marginTop="15dp"
         android:textSize="20dp"/>
 
