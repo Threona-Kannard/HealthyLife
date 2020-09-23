@@ -13,8 +13,10 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity"/>
-        <activity android:name=".FoodActivity"/>
-        <activity android:name=".SleepActivity"/>
+        <activity android:name=".FoodActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SleepActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".WaterActivity"
