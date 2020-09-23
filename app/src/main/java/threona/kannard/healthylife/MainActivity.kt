@@ -21,9 +21,10 @@ class MainActivity : AppCompatActivity() {
             val descriptionText = getString(R.string.channel_description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
 
-            val channel = NotificationChannel(R.string.CHANNEL_ID.toString(), name, importance).apply {
-                description = descriptionText
-            }
+            val channel =
+                NotificationChannel(R.string.CHANNEL_ID.toString(), name, importance).apply {
+                    description = descriptionText
+                }
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -51,9 +52,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val sleepButton = findViewById<Button>(R.id.sleep_activity_button)
-        foodButton?.setOnClickListener {
-            val intent : Intent = Intent(this,SleepActivity::class.java)
+        val timeButton = findViewById<Button>(R.id.time_usage_activity_button)
+        timeButton?.setOnClickListener {
+            val intent : Intent = Intent(this,TimeUsageActivity::class.java)
             startActivity(intent)
         }
     }

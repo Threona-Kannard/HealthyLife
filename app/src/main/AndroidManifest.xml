@@ -22,7 +22,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".FoodActivity"
             android:parentActivityName=".MainActivity"/>
-        <activity android:name=".SleepActivity"
+        <activity android:name=".TimeUsageActivity"
             android:parentActivityName=".MainActivity"/>
 
 
