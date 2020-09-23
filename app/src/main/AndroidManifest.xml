@@ -11,22 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
         <activity android:name=".FoodDetail"
             android:parentActivityName=".FoodActivity"/>
         <activity
             android:name=".FoodActivity"
             android:parentActivityName=".MainActivity" />
-=======
-
         <activity android:name=".MainActivity"/>
-        <activity android:name=".FoodActivity"
-            android:parentActivityName=".MainActivity"/>
         <activity android:name=".TimeUsageActivity"
             android:parentActivityName=".MainActivity"/>
-
-
->>>>>>> 9ad084621d84658dc54dd397500141d01a79a8f8
         <activity
             android:name=".WaterActivity"
             android:label="@string/title_activity_water"
