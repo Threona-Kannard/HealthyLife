@@ -70,17 +70,4 @@ class FoodActivity : AppCompatActivity() {
         mRecyclerView.adapter = mAdapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater : MenuInflater = menuInflater
-        inflater.inflate(R.menu.toolbar_menu,menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 }

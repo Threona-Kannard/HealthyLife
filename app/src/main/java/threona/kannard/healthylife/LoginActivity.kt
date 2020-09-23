@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
         var signUpBtn = findViewById<Button>(R.id.app_sign_up)
         signUpBtn.setOnClickListener {
             val intent: Intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,12)
         }
         //Sign In
         textInputEmail = findViewById(R.id.text_input_email)
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
             {
                 val intent : Intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("email", textInputEmail?.editText?.text.toString())
-                startActivity(intent)
+                startActivityForResult(intent,12)
             }
         }
         //endregion
@@ -133,10 +133,10 @@ class LoginActivity : AppCompatActivity() {
             val task =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-
         }
-        val intent: Intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            startActivityForResult(intent, 12)
     }
 
 
