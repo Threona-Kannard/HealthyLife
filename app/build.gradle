@@ -54,4 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:21.6.0'
     implementation 'com.google.firebase:firebase-database-ktx:19.4.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 }

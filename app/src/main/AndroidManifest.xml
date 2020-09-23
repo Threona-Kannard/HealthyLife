@@ -11,11 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".FoodDetail"
             android:parentActivityName=".FoodActivity"/>
         <activity
             android:name=".FoodActivity"
             android:parentActivityName=".MainActivity" />
+=======
+
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".FoodActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SleepActivity"
+            android:parentActivityName=".MainActivity"/>
+
+
+>>>>>>> 9ad084621d84658dc54dd397500141d01a79a8f8
         <activity
             android:name=".WaterActivity"
             android:label="@string/title_activity_water"
@@ -31,7 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -42,7 +52,8 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
-        <service android:name=".ScreenHandler" />
+        <service android:name=".ScreenHandler"/>
+
     </application>
 
 </manifest>
