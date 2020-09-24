@@ -73,10 +73,10 @@ class FoodActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
                 val food = mFoods[position]
                 Toast.makeText(this@FoodActivity, food.getName(), Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@FoodActivity, FoodDetail::class.java)
-                intent.putExtra("position", position)
-                intent.putExtra("url", mFoods[position].getImageUrl())
-                startActivity(intent)
+//                val intent = Intent(this@FoodActivity, FoodDetail::class.java)
+//                intent.putExtra("position", position)
+//                intent.putExtra("url", mFoods[position].getImageUrl())
+//                startActivity(intent)
             }
         })
     }

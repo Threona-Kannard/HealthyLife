@@ -13,8 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FoodDetail"
-            android:parentActivityName=".FoodActivity"/>
         <activity
             android:name=".FoodActivity"
             android:parentActivityName=".MainActivity" />
@@ -31,9 +29,6 @@
         <receiver android:name=".Notification_reciever" />
         <activity android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity"/>
-        <activity
-            android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
