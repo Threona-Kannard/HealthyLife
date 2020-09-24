@@ -6,108 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".FoodDetail">
 
-    <include
-        layout="@layout/toolbar"
+    <include layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/toolbar"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:id="@+id/cardDetail">-->
-<!--        <ImageView-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:id="@+id/imageDetails"-->
-<!--            android:src="@mipmap/ic_launcher"/>-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Name: "-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:id="@+id/nameLabel" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="test"-->
-<!--                    android:id="@+id/nameDetails"-->
-<!--                    android:textAlignment="textStart"/>-->
-<!--            </LinearLayout>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:layout_width="65dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Nutrition: "-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:id="@+id/nutriLabel" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="test"-->
-<!--                    android:id="@+id/nutriDetail"-->
-<!--                    android:textAlignment="textStart"/>-->
-<!--            </LinearLayout>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Meal: "-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:id="@+id/mealLabel" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="test"-->
-<!--                    android:id="@+id/mealDetail"-->
-<!--                    android:textAlignment="textStart"/>-->
-<!--            </LinearLayout>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="For: "-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:id="@+id/goalLabel" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="test"-->
-<!--                    android:id="@+id/goalDetails"-->
-<!--                    android:textAlignment="textStart"/>-->
-<!--            </LinearLayout>-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/cardDetail"-->
-<!--        android:textSize="30dp"-->
-<!--        android:textStyle="bold|italic"-->
-<!--        android:id="@+id/cookingLabel"-->
-<!--        android:text="Cooking: "/>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@id/cookingLabel"-->
-<!--        android:textSize="20dp"-->
-<!--        android:text="Work in Process"-->
-<!--        android:textAlignment="center"/>-->
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_circle"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/imageDetail"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageDetail"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:id="@+id/nameDetail"
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Nutrion:"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:id="@+id/nutriDetail"
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Meal:"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:id="@+id/mealDetail"
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="Cooking process"
+            android:textStyle="bold|italic"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Work in Process"
+            android:textAlignment="center"/>
+    </LinearLayout>
 </RelativeLayout>
