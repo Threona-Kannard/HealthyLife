@@ -3,8 +3,7 @@
     package="threona.kannard.healthylife">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -13,22 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FoodDetail"
+            android:parentActivityName=".FoodActivity"/>
         <activity
             android:name=".FoodActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".TimeUsageActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".TimeUsageActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".WaterActivity"
             android:label="@string/title_activity_water"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".WaterSetting"
-            android:parentActivityName=".WaterActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WaterSetting"
+            android:parentActivityName=".WaterActivity" />
+
         <receiver android:name=".Notification_reciever" />
-        <activity android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity"/>
+
+        <activity
+            android:name=".SignUpActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,8 +52,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
-        <service android:name=".ScreenHandler"/>
-
+        <service android:name=".ScreenHandler" />
     </application>
 
 </manifest>

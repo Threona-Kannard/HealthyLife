@@ -18,6 +18,7 @@ class TimeUsageActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_usage)
+        loadData()
         findViewById<TextView>(R.id.average_time).text = averageUsageTime().toString()
         lateinit var dataArray : Array<DataPoint>
         for(x in 0..9){
