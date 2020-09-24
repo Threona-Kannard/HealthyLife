@@ -20,7 +20,7 @@ class ScreenHandler : Service() {
         val screenListener = ScreenListener(this)
         screenListener.begin(object : ScreenStateListener {
             override fun onUserPresent() {
-                counter.endCounter()
+                counter.beginCounter()
             }//unlock screen
 
             override fun onScreenOn() {
@@ -28,11 +28,7 @@ class ScreenHandler : Service() {
             }//screen on
 
             override fun onScreenOff() {
-                val date = Calendar.getInstance()
-                val time = date.get(Calendar.HOUR_OF_DAY)
-                if(time in 21..6){
-                    counter.beginCounter()
-                }
+                counter.endCounter()
             }//screen off
         })
         return super.onStartCommand(intent, flags, startId)

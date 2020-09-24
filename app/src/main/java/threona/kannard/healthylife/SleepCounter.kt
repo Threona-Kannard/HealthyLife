@@ -1,8 +1,27 @@
 package threona.kannard.healthylife
 
+import android.content.Context
+import android.util.Log
+import android.widget.ProgressBar
+import android.widget.Toast
+import java.io.*
 import java.util.*
+import androidx.appcompat.app.AppCompatActivity
 
-class SleepCounter {
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlin.collections.ArrayList
+
+
+class SleepCounter : AppCompatActivity() {
+    private val timeFileName = "usage_history.txt"
+    private var beginTime:Calendar? = null
+    private var endTime:Calendar? = null
+
     fun onChangeState(){
 
     }
@@ -11,28 +30,80 @@ class SleepCounter {
     }
     fun endCounter(){
         endTime = Calendar.getInstance()
-        if (!isSleep()){
+        if (!isUsing() || beginTime == null){
             endTime = null
             beginTime = null
-            //if Sleep then Save Sleep on to fill
-            //something like SaveSleep(beginTime, endTime, Date)
+        }else{
+            SaveUsageTime(differInTime())
         }
     }
 
-    fun isSleep(): Boolean {
-        var differHour = endTime!!.get(Calendar.HOUR_OF_DAY) - beginTime!!.get(Calendar.HOUR_OF_DAY)
-        var differMin : Int
+    private fun isUsing(): Boolean {
+        val differHour
+                = endTime!!.get(Calendar.HOUR_OF_DAY) - beginTime!!.get(Calendar.HOUR_OF_DAY)
+        val differMin : Int
+
         differMin = if(differHour == 0) {
             endTime!!.get(Calendar.MINUTE) - beginTime!!.get(Calendar.MINUTE)
         } else if(differHour == -23 || differHour == 1){
             60 - (endTime!!.get(Calendar.MINUTE) - beginTime!!.get(Calendar.MINUTE))
-        } else 15
-        return (differMin < 15)
+        } else 3
+        return (differMin < 3)
     }
 
-
-    companion object{
-        var beginTime:Calendar? = null
-        var endTime:Calendar? = null
+    private fun differInTime() : Float{
+        var differHour : Float = (endTime!!.get(Calendar.HOUR_OF_DAY) - beginTime!!.get(Calendar.HOUR_OF_DAY)).toFloat()
+        var differMin :Float = if(differHour == 0.toFloat()) {
+            endTime!!.get(Calendar.MINUTE) - beginTime!!.get(Calendar.MINUTE).toFloat()
+        } else {
+            60 - (endTime!!.get(Calendar.MINUTE) - beginTime!!.get(Calendar.MINUTE)).toFloat()
+        }
+        return differHour + differMin/60
     }
+
+    inline fun <T> MutableList<T>.mapInPlace(mutator: (T)->T) {
+        val iterate = this.listIterator()
+        while (iterate.hasNext()) {
+            val oldValue = iterate.next()
+            val newValue = mutator(oldValue)
+            if (newValue !== oldValue) {
+                iterate.set(newValue)
+            }
+        }
+    }
+
+    private fun SaveUsageTime(differTime: Float) {
+        var dataLoad : String
+        var file = File(filesDir.absolutePath, timeFileName)
+        var fileInputStream: FileInputStream? = null
+        fileInputStream = openFileInput(timeFileName)
+        val inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
+        val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
+        val stringBuilder: StringBuilder = StringBuilder()
+        var text: String? = null
+        while ({ text = bufferedReader.readLine(); text }() != null) {
+            stringBuilder.append(text)
+        }
+        dataLoad = (stringBuilder.toString())
+        var res  = dataLoad.split(";").toTypedArray()
+
+        if(endTime!!.get(Calendar.HOUR_OF_DAY) != 23){
+            var data = res[0].substringAfter(":").toFloat()
+            data += differInTime()
+            val newData = "0:$data"
+            res[0] = newData
+        }else{
+            for(x in 9 downTo 1){
+                res[x] = res[x-1]
+            }
+            res[0] = "0:${differInTime()}"
+        }
+        val fileOutputStream = openFileOutput(timeFileName, Context.MODE_PRIVATE)
+        for(re in res){
+            fileOutputStream.write(re.toByteArray())
+        }
+    }
+   // day:Time;
+
+
 }

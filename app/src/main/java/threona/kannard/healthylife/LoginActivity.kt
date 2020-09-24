@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
+import com.facebook.login.BuildConfig
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
         var signUpBtn = findViewById<Button>(R.id.app_sign_up)
         signUpBtn.setOnClickListener {
             val intent: Intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,12)
         }
         //Sign In
         textInputEmail = findViewById(R.id.text_input_email)
@@ -79,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
             {
                 val intent : Intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("email", textInputEmail?.editText?.text.toString())
-                startActivity(intent)
+                startActivityForResult(intent,12)
             }
         }
         //endregion
@@ -133,10 +134,10 @@ class LoginActivity : AppCompatActivity() {
             val task =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-
         }
-        val intent: Intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            startActivityForResult(intent, 12)
     }
 
 

@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
@@ -20,9 +21,10 @@ class MainActivity : AppCompatActivity() {
             val descriptionText = getString(R.string.channel_description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
 
-            val channel = NotificationChannel(R.string.CHANNEL_ID.toString(), name, importance).apply {
-                description = descriptionText
-            }
+            val channel =
+                NotificationChannel(R.string.CHANNEL_ID.toString(), name, importance).apply {
+                    description = descriptionText
+                }
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -34,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
 
         createNotificationChannel()
         //Button Water
@@ -43,13 +43,18 @@ class MainActivity : AppCompatActivity() {
         waterButton?.setOnClickListener()
         {
             var intent: Intent = Intent(applicationContext, WaterActivity::class.java)
-
             startActivity(intent)
         }
 
         val foodButton = findViewById<Button>(R.id.food_activity)
         foodButton?.setOnClickListener {
-            val intent : Intent = Intent(this,FoodActivity::class.java)
+            val intent : Intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val timeButton = findViewById<Button>(R.id.time_usage_activity_button)
+        timeButton?.setOnClickListener {
+            val intent : Intent = Intent(this,TimeUsageActivity::class.java)
             startActivity(intent)
         }
     }
@@ -60,8 +65,9 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return super.onOptionsItemSelected(item)
     }
+
 }
