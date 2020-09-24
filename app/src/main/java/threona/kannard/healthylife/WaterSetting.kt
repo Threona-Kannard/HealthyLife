@@ -1,0 +1,71 @@
+package threona.kannard.healthylife
+
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TimePicker
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+
+class WaterSetting : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.water_setting_layout)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+
+        val calendar = Calendar.getInstance();
+
+        val intent = Intent(applicationContext, Notification_reciever::class.java)
+
+        val pendingIntent:PendingIntent = PendingIntent.getActivity(applicationContext,100,
+            intent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmmanager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+
+        val btn_default = findViewById<Button>(R.id.btn_default)
+        btn_default?.setOnClickListener()
+        {
+            calendar.set(Calendar.HOUR_OF_DAY,7)
+            calendar.set(Calendar.MINUTE,30)
+            calendar.set(Calendar.SECOND,0)
+            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            Toast.makeText(applicationContext,"Set notification default(7:30) " + calendar.timeInMillis, Toast.LENGTH_LONG).show()
+        }
+
+        val btn_save = findViewById<Button>(R.id.btn_save_noti)
+        btn_save?.setOnClickListener()
+        {
+            val timeset = findViewById<TimePicker>(R.id.timeset)
+            calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
+            calendar.set(Calendar.MINUTE,timeset.minute)
+            calendar.set(Calendar.SECOND,0)
+            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
+        }
+
+        val btn_update = findViewById<Button>(R.id.btn_update_noti)
+        btn_update?.setOnClickListener()
+        {
+            val timeset = findViewById<TimePicker>(R.id.timeset)
+            calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
+            calendar.set(Calendar.MINUTE,timeset.minute)
+            calendar.set(Calendar.SECOND,0)
+            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
+        }
+
+        val btn_clear = findViewById<Button>(R.id.btn_clear_noti)
+        btn_clear?.setOnClickListener()
+        {
+            alarmmanager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+ 3000,pendingIntent)
+            Toast.makeText(applicationContext,"temporary set at check 3S", Toast.LENGTH_LONG).show()
+        }
+    }
+}

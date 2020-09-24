@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +20,9 @@
             android:label="@string/title_activity_water"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"/>
+        <activity android:name=".WaterSetting"
+            android:parentActivityName=".WaterActivity"/>
+        <receiver android:name=".Notification_reciever" />
         <activity android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity"/>
         <activity android:name=".LoginActivity">

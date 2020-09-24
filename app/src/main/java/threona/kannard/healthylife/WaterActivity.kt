@@ -1,6 +1,5 @@
 package threona.kannard.healthylife
 
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import java.io.*
 import java.time.LocalDate
 
@@ -26,21 +23,11 @@ class WaterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_water)
 
-        val btn_water_icon = findViewById<Button>(R.id.add_water)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
-        // Create an explicit intent for an Activity in your app
-        val intent = Intent(this, WaterActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-        var builder = NotificationCompat.Builder(this, R.string.CHANNEL_ID.toString())
-            .setSmallIcon(R.drawable.water_icon)
-            .setContentTitle("Water")
-            .setContentText("Drink Now !!")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            // Set the intent that will fire when the user taps the notification
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
+        val btn_water_icon = findViewById<Button>(R.id.add_water)
 
         var file = File(filesDir.absolutePath, Waterfilename)
 
@@ -111,14 +98,12 @@ class WaterActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,Waterdata, Toast.LENGTH_LONG).show()
         }
 
-        val btn_5sec = findViewById<Button>(R.id.timer5sec)
 
-        btn_5sec?.setOnClickListener()
+        val btn_setting = findViewById<Button>(R.id.water_setting_btn)
+        btn_setting.setOnClickListener()
         {
-            with(NotificationManagerCompat.from(this)) {
-                // notificationId is a unique int for each notification that you must define
-                notify(100, builder.build())
-            }
+            var intent: Intent = Intent(this, WaterSetting::class.java)
+            startActivity(intent)
         }
     }
 
