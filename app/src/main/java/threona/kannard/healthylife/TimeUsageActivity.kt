@@ -1,5 +1,6 @@
 package threona.kannard.healthylife
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,10 @@ class TimeUsageActivity : AppCompatActivity(){
     private fun loadData(){
         var dataLoad : String
         var file = File(filesDir.absolutePath, timeFileName)
+        if (file.exists() == false)
+        {
+            openFileOutput(timeFileName, Context.MODE_PRIVATE)
+        }
         var fileInputStream: FileInputStream? = null
         fileInputStream = openFileInput(timeFileName)
         val inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
@@ -44,7 +49,7 @@ class TimeUsageActivity : AppCompatActivity(){
         data  = dataLoad.split(";").toTypedArray()
     }
     private fun averageUsageTime() : Float{
-        var average : Float = 0.toFloat()
+        var average : Float = 0f
         for(time in data){
             average += time.substringAfter(":").toFloat()
         }

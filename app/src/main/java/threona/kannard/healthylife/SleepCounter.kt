@@ -1,20 +1,12 @@
 package threona.kannard.healthylife
 
 import android.content.Context
-import android.util.Log
-import android.widget.ProgressBar
-import android.widget.Toast
-import java.io.*
-import java.util.*
 import androidx.appcompat.app.AppCompatActivity
-
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import kotlin.collections.ArrayList
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileInputStream
+import java.io.InputStreamReader
+import java.util.*
 
 
 class SleepCounter : AppCompatActivity() {
@@ -75,6 +67,10 @@ class SleepCounter : AppCompatActivity() {
     private fun SaveUsageTime(differTime: Float) {
         var dataLoad : String
         var file = File(filesDir.absolutePath, timeFileName)
+        if (file.exists() == false)
+        {
+            openFileOutput(timeFileName, Context.MODE_PRIVATE)
+        }
         var fileInputStream: FileInputStream? = null
         fileInputStream = openFileInput(timeFileName)
         val inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
