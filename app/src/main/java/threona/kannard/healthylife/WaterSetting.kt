@@ -2,8 +2,11 @@ package threona.kannard.healthylife
 
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TimePicker
 import android.widget.Toast
@@ -23,7 +26,7 @@ class WaterSetting : AppCompatActivity() {
 
         val intent = Intent(this, Notification_reciever::class.java)
 
-        val pendingIntent:PendingIntent = PendingIntent.getActivity(applicationContext,0, intent,PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent:PendingIntent = PendingIntent.getBroadcast(applicationContext,0, intent,PendingIntent.FLAG_UPDATE_CURRENT)
 
         val alm_manager:AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 

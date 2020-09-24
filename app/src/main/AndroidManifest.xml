@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="threona.kannard.healthylife">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FoodDetail"
-            android:parentActivityName=".FoodActivity"/>
+        <activity
+            android:name=".FoodDetail"
+            android:parentActivityName=".FoodActivity" />
         <activity
             android:name=".FoodActivity"
             android:parentActivityName=".MainActivity" />
@@ -26,16 +28,13 @@
             android:label="@string/title_activity_water"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <receiver android:name=".Notification_reciever"/>
         <activity
             android:name=".WaterSetting"
             android:parentActivityName=".WaterActivity" />
-
-        <receiver android:name=".Notification_reciever" />
-
-        <activity android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity"/>
-
-
+        <activity
+            android:name=".SignUpActivity"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
