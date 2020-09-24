@@ -21,12 +21,11 @@ class WaterSetting : AppCompatActivity() {
 
         val calendar = Calendar.getInstance();
 
-        val intent = Intent(applicationContext, Notification_reciever::class.java)
+        val intent = Intent(this, Notification_reciever::class.java)
 
-        val pendingIntent:PendingIntent = PendingIntent.getActivity(applicationContext,100,
-            intent,PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent:PendingIntent = PendingIntent.getActivity(applicationContext,0, intent,PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val alarmmanager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        val alm_manager:AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 
 
         val btn_default = findViewById<Button>(R.id.btn_default)
@@ -35,7 +34,7 @@ class WaterSetting : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY,7)
             calendar.set(Calendar.MINUTE,30)
             calendar.set(Calendar.SECOND,0)
-            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
             Toast.makeText(applicationContext,"Set notification default(7:30) " + calendar.timeInMillis, Toast.LENGTH_LONG).show()
         }
 
@@ -46,7 +45,7 @@ class WaterSetting : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
             calendar.set(Calendar.MINUTE,timeset.minute)
             calendar.set(Calendar.SECOND,0)
-            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
             Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
         }
 
@@ -57,14 +56,14 @@ class WaterSetting : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
             calendar.set(Calendar.MINUTE,timeset.minute)
             calendar.set(Calendar.SECOND,0)
-            alarmmanager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
+            alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
             Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
         }
 
         val btn_clear = findViewById<Button>(R.id.btn_clear_noti)
         btn_clear?.setOnClickListener()
         {
-            alarmmanager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+ 3000,pendingIntent)
+            alm_manager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+ 300,pendingIntent)
             Toast.makeText(applicationContext,"temporary set at check 3S", Toast.LENGTH_LONG).show()
         }
     }

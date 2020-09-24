@@ -31,9 +31,6 @@
         <receiver android:name=".Notification_reciever" />
         <activity android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity"/>
-        <activity
-            android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
