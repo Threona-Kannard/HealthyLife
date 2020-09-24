@@ -34,9 +34,7 @@ class WaterSetting : AppCompatActivity() {
         val btn_default = findViewById<Button>(R.id.btn_default)
         btn_default?.setOnClickListener()
         {
-            calendar.set(Calendar.HOUR_OF_DAY,7)
-            calendar.set(Calendar.MINUTE,30)
-            calendar.set(Calendar.SECOND,0)
+            calendar.set(0,0,0,7,30,0)
             alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
             Toast.makeText(applicationContext,"Set notification default(7:30) " + calendar.timeInMillis, Toast.LENGTH_LONG).show()
         }
@@ -45,29 +43,26 @@ class WaterSetting : AppCompatActivity() {
         btn_save?.setOnClickListener()
         {
             val timeset = findViewById<TimePicker>(R.id.timeset)
-            calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
-            calendar.set(Calendar.MINUTE,timeset.minute)
-            calendar.set(Calendar.SECOND,0)
+            calendar.set(0,0,0,timeset.hour,timeset.minute,0)
             alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
-            Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Set notification at " + calendar.timeInMillis, Toast.LENGTH_LONG).show()
         }
 
         val btn_update = findViewById<Button>(R.id.btn_update_noti)
         btn_update?.setOnClickListener()
         {
             val timeset = findViewById<TimePicker>(R.id.timeset)
-            calendar.set(Calendar.HOUR_OF_DAY,timeset.hour)
-            calendar.set(Calendar.MINUTE,timeset.minute)
-            calendar.set(Calendar.SECOND,0)
+            calendar.set(0,0,0,timeset.hour,timeset.minute,0)
             alm_manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
-            Toast.makeText(applicationContext,"Set notification at " + calendar.time, Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Set notification at " + calendar.timeInMillis, Toast.LENGTH_LONG).show()
         }
 
         val btn_clear = findViewById<Button>(R.id.btn_clear_noti)
         btn_clear?.setOnClickListener()
         {
-            alm_manager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+ 300,pendingIntent)
-            Toast.makeText(applicationContext,"temporary set at check 3S", Toast.LENGTH_LONG).show()
+            //alm_manager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+ 300,pendingIntent)
+            alm_manager.cancel(pendingIntent)
+            Toast.makeText(applicationContext,"Clear all notification", Toast.LENGTH_LONG).show()
         }
     }
 }
